@@ -56,7 +56,7 @@ def word_frequency_analysis():
 
     """
     Endpoint for analyzing word frequency in Wikipedia articles.
-    Usage: /word_frequency_analysis?topic=<topic>&n=<n>
+    Usage: /word-frequency-analysis?topic=<topic>&n=<n>
     - topic (str): Wikipedia topic to analyze.
     - n (int, optional): Number of top words to retrieve (default is 10).
     Returns:
@@ -100,7 +100,7 @@ def search_history_endpoint():
 
     """
     Endpoint for accessing the search history.
-    Usage: /search_history
+    Usage: /search-history
     Returns:
     - str: Response containing the search history in reverse order.
     """
