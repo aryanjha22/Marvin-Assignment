@@ -20,14 +20,14 @@ class WordFrequencyAppTests(unittest.TestCase):
 
     def test_word_frequency_analysis_success(self):
         # Test a successful request for word frequency analysis
-        response = self.app.get('/word_frequency_analysis?topic=Newspaper&n=5')
+        response = self.app.get('/word-frequency-analysis?topic=Newspaper&n=5')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Topic: Newspaper', response.data)
         self.assertIn(b'Top 5 Words:', response.data)
 
     def test_word_frequency_analysis_missing_topic(self):
         # Test a request with missing 'topic' parameter
-        response = self.app.get('/word_frequency_analysis')
+        response = self.app.get('/word-frequency-analysis')
         self.assertEqual(response.status_code, 400)
         self.assertIn(b'Error: Topic parameter is required', response.data)
 
@@ -35,7 +35,7 @@ class WordFrequencyAppTests(unittest.TestCase):
     def test_word_frequency_analysis_disambiguation_error(self, mock_page):
         # Test handling DisambiguationError
         mock_page.side_effect = wikipedia.exceptions.DisambiguationError("Python", ["Python (programming)", "Python (snake)"])
-        response = self.app.get('/word_frequency_analysis?topic=Python&n=5')
+        response = self.app.get('/word-frequency-analysis?topic=Python&n=5')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'DisambiguationError', response.data)
         self.assertIn(b'Python (programming)', response.data)
@@ -45,14 +45,14 @@ class WordFrequencyAppTests(unittest.TestCase):
     def test_word_frequency_analysis_page_error(self, mock_page):
         # Test handling PageError
         mock_page.side_effect = wikipedia.exceptions.PageError("Page not found")
-        response = self.app.get('/word_frequency_analysis?topic=aryan&n=5')
+        response = self.app.get('/word-frequency-analysis?topic=aryan&n=5')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'PageError', response.data)
         self.assertIn(b'Page not found', response.data)
 
     def test_search_history_success(self):
         # Test a successful request for search history
-        response = self.app.get('/search_history')
+        response = self.app.get('/search-history')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Search History:', response.data)
 
@@ -60,7 +60,7 @@ class WordFrequencyAppTests(unittest.TestCase):
         # Test an internal server error
         with patch('wikipedia.page') as mock_page:
             mock_page.side_effect = Exception("Internal server error")
-            response = self.app.get('/word_frequency_analysis?topic=Python&n=5')
+            response = self.app.get('/word-frequency-analysis?topic=Python&n=5')
             self.assertEqual(response.status_code, 500)
             self.assertIn(b'Internal Server Error', response.data)
 

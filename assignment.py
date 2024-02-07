@@ -1,19 +1,3 @@
-"""
-Instructions for running the application:
-
-    Install required packages: pip install Flask wikipedia-api.
-
-    Run the application using python3 assignment.py.
-
-Endpoint usage examples:
-
-    Analyze word frequency for the topic "Python" and retrieve the top 5 words:
-    http://localhost:5000/word_frequency_analysis?topic=Python&n=5
-
-    Access the search history:
-    http://localhost:5000/search_history
-"""
-
 from flask import Flask, request, make_response
 import wikipedia
 from collections import Counter
@@ -67,7 +51,7 @@ def search_wikipedia(topic, n):
         return f"PageError: {e}"
 
 # Define an endpoint for word frequency analysis
-@app.route('/word_frequency_analysis', methods=['GET'])
+@app.route('/word-frequency-analysis', methods=['GET'])
 def word_frequency_analysis():
 
     """
@@ -111,7 +95,7 @@ def word_frequency_analysis():
         return make_response('Internal Server Error', 500, {'Content-Type': 'text/plain'})
 
 # Define an endpoint for accessing search history
-@app.route('/search_history', methods=['GET'])
+@app.route('/search-history', methods=['GET'])
 def search_history_endpoint():
 
     """
