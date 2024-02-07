@@ -1,11 +1,3 @@
-"""
-Instructions for running test's:
-
-    Install required packages if not already installed: pip install Flask wikipedia
-
-    Run the test's using python3 test_assignment.py
-"""
-
 import unittest
 from unittest.mock import patch
 from flask import Flask
